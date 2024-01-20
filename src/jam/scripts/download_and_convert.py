@@ -9,6 +9,7 @@ _MODEL = flags.DEFINE_string("model", "*", "Name of the model to convert")
 _MODEL_DIR = flags.DEFINE_string(
     "model_dir", "data/models", "Path to checkpoint to convert"
 )
+_SKIP_DOWNLOAD = flags.DEFINE_boolean("skip_download", False, "Skip download")
 
 
 def main(_):
@@ -19,7 +20,7 @@ def main(_):
     selected_models = sorted(list(set(selected_models)))
 
     for model_name in selected_models:
-        model_zoo.download_and_convert(model_name, _MODEL_DIR.value)
+        model_zoo.download_and_convert(model_name, _MODEL_DIR.value, _SKIP_DOWNLOAD.value)
 
 
 if __name__ == "__main__":
